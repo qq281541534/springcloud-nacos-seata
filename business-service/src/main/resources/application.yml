@@ -1,0 +1,95 @@
+## 配置原则：
+## 1.bootstrap.yml只放连接远程配置中心的相关配置
+## 2.application.yml放置所有环境都需要的通用配置，不通用配置放在配置中心，例如：数据库连接、tomcat的连接数等。
+## 3.能放本地，不放远程
+## 4.所有配置属性尽量都要加注释
+## 5.同样的配置只能出现在一个地方
+## 6.配置文件优先级：本地 < 环境变量 < 配置中心 （默认情况）
+server:
+  port: 8083
+spring:
+  cloud:
+    nacos:
+      discovery:
+        namespace: ${APPLICATION_NAMESPACE:public}
+        server-addr: ${NACOS_SERVER_ADDR:nacos-headless:8848}
+        group: ${APPLICATION_GROUP:DEFAULT_GROUP}
+  jackson:
+    time-zone: GMT+8  # 传输过程时间偏差8小时问题
+  aop:
+    auto: true
+  mvc:
+    dispatch-options-request: true   #设置跨域
+  devtools:
+    restart:
+      enabled: false        #开启热部署
+  messages:
+    basename: static/i18n/messages
+    encoding: UTF-8
+  datasource:
+    hikari:
+      auto-commit: true
+      #连接建立超时时间 单位ms 默认30000
+      connection-timeout: 30000
+      #空闲连接超时时间 单位ms 最小10000(10s) 默认600000(10min)
+      idleTimeout: 30000
+      #最大连接数（包含空闲和正在使用的连接），默认值10.当连接数达到该值时，新的连接申请会被阻塞直到超时。
+      maximumPoolSize: 5
+      #一个连接在连接池中的最长存活时间，正在被使用的链接如果超时会等到关闭后被移除
+      #最小30000ms (30 seconds). Default: 1800000 (30 minutes)
+      maxLifetime: 1800000
+      jdbc-url: jdbc:mysql://law.internal.gridsumdissector.com:36930/seata_business?allowMultiQueries=true&rewriteBatchedStatements=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 7XhDDEZhMZK5LDzv
+## 开启actuator相关端点的配置
+management:
+  info:
+    git:
+      mode: full
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true #开启关闭开关，配合k8s lifecycle hook post使用
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+# feign配置
+feign:
+  #  hystrix:
+  #    enabled: true     # 开启熔断机制
+  client:
+    config:
+      default:
+        connectTimeout: 50000  #feignclient客户端 http 连接、读取超时时间设置
+        readTimeout: 70000
+        loggerLevel: full    #feignclient客户端日志输出等级
+  # 使用httpclient作为feign的链接池，feign可提升40%性能
+  httpclient:
+    enabled: true
+    max-connections: 200            # 默认值200
+    max-connections-per-route: 50     # 默认值50
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 7000  #断路器超时时间
+#          strategy: SEMAPHORE       #隔离策略
+#          semaphore:
+#            maxConcurrentRequests: 50     #默认值是10
+
+########## swagger 配置组件集成###
+#cloud:
+#  swagger:
+#    basePackage:
+#      - com.cloudportal.portalcms.controller
+#    title: cms内容管理 API 服务
+#    description: cms内容管理，提供网站信息管理，内容管理
+#    emali:
+#    developerName: hufozhuan
+#    version: 1.0.0
