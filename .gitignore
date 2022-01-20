@@ -1,9 +1,6 @@
-/order-service/order-service.iml
-/business-service/mvnw
-/business-service/mvnw.cmd
+/.idea/
+/logs/
 /common/mvnw
 /common/mvnw.cmd
-/common/.mvn/wrapper/maven-wrapper.jar
-/common/.mvn/wrapper/maven-wrapper.properties
-/common/.mvn/wrapper/maven-wrapper.jar
-/account-service/target/
+/order-service/order-service.iml
+/stock-service/stock-service.iml
