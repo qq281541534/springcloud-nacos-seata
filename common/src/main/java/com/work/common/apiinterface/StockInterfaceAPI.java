@@ -1,4 +1,4 @@
-package com.work.common.apiinterface.http;
+package com.work.common.apiinterface;
 
 import com.work.common.component.RespBody;
 import com.work.common.dto.CommodityDTO;

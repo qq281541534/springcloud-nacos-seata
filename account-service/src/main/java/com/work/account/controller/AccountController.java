@@ -1,19 +1,15 @@
 package com.work.account.controller;
 
-import ch.qos.logback.classic.Logger;
-import com.work.account.model.Account;
-import com.work.account.repository.AccountMapper;
 import com.work.account.service.AccountService;
-import com.work.common.apiinterface.http.AccountInterfaceAPI;
+import com.work.common.apiinterface.AccountInterfaceAPI;
 import com.work.common.component.RespBody;
 import com.work.common.dto.AccountDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Slf4j

@@ -1,0 +1,51 @@
+## 配置原则：
+## 1.bootstrap.yml只放连接远程配置中心的相关配置
+## 2.application.yml放置所有环境都需要的通用配置，不通用配置放在配置中心，例如：数据库连接、tomcat的连接数等。
+## 3.能放本地，不放远程
+## 4.所有配置属性尽量都要加注释
+## 5.同样的配置只能出现在一个地方
+## 6.配置文件优先级：本地 < 环境变量 < 配置中心 （默认情况）
+spring:
+  application:
+    name: stock-service
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS_SERVER_ADDR:nacos-headless:8848}
+        name: ${spring.application.name}
+        namespace: seata-test
+        group: DEFAULT_GROUP
+        file-extension: yaml
+  #    alibaba:
+  #      seata:
+  #        tx-service-group: gz_cloudportal_dev
+  ## 默认选中dev环境
+  profiles:
+    active: dev
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: ${spring.application.name}-group # 事务群组（可以每个应用独立取名，也可以使用相同的名字） *必须
+  config:
+    type: nacos
+    nacos:
+      namespace: seata-test
+      serverAddr: ${NACOS_SERVER_ADDR:nacos-headless:8848}
+      group: SEATA_GROUP
+  registry:
+    type: nacos
+    nacos:
+      serverAddr: ${NACOS_SERVER_ADDR:nacos-headless:8848}
+      namespace: seata-test
+      cluster: default
+      group: SEATA_GROUP
+  enable-auto-data-source-proxy: true # 是否开启数据源自动代理，等同于在启动类上增加@EnableAutoDataSourceProxy
+  data-source-proxy-mode: AT # 使用自动代理数据源时，如果使用XA模式还需要调整配置文件
+  use-jdk-proxy: false
+  service:
+    vgroup-mapping:
+      stock-service-group: default # TC 集群（必须与seata-server保持一致）
+    enable-degrade: false # 降级开关
+    disable-global-transaction: false # 禁用全局事务（默认false）
+

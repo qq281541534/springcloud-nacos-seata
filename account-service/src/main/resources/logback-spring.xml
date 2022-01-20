@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ ======================================================================
-  ~
-  ~       Copyright (C) 中国石油化工集团有限公司版权所有
-  ~                     http://www.sinopec.com/
-  ~
-  ~ ======================================================================
-  -->
-
 <configuration>
   <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
   ​

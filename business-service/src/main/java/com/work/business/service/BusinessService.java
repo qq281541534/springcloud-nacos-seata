@@ -9,7 +9,6 @@ import com.work.common.dto.CommodityDTO;
 import com.work.common.dto.OrderDTO;
 import com.work.common.exception.DefaultException;
 import io.seata.core.context.RootContext;
-import io.seata.core.exception.GlobalTransactionException;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

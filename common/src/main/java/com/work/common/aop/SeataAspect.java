@@ -29,8 +29,6 @@ import java.lang.reflect.Type;
  * 3: 注意clientPointcut和fallbackPointcut的配置，否则可能找不到具体的方法从而导致回滚失败
  * </li>
  *
- * @author Gridsum
- * @date 2021-11-17 10:18 星期三
  */
 @Component
 @Aspect

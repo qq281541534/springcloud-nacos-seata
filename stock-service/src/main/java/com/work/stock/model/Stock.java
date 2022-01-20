@@ -1,21 +1,25 @@
-package com.work.account.model;
-
+package com.work.stock.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+/**
+ * @author liuyu
+ * @Description 库存
+ * @createTime 2022/1/13 22:55
+ */
 @Data
 @Accessors(chain = true)
-@TableName("account_tbl")
-public class Account extends Model<Account> {
+@TableName("stock_tbl")
+public class Stock {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-    private String userId;
-    private Double amount;
+    private String commodityCode;
+    private String name;
+    private Integer count;
 
 }

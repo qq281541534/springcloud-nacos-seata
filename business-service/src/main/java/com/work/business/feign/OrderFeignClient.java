@@ -1,6 +1,6 @@
 package com.work.business.feign;
 
-import com.work.common.apiinterface.http.OrderInterfaceAPI;
+import com.work.common.apiinterface.OrderInterfaceAPI;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**
