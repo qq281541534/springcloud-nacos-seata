@@ -202,10 +202,10 @@ INSERT INTO `stock_tbl` VALUES ('1', 'C201901140001', '水杯', '1000');
 ## 3. 测试
 
 1. 分布式事务成功，模拟扣款、下单、扣库存
-   localhost:8083/business/buy![img.png](./img/commit.png)
+   localhost:8083/business/buy![img.png](assets/commit.png)
 
 2. 分布式事务失败，模拟扣款成功、下单成功、扣库存失败，最终同时回滚
-   localhost:8083/business/buy2![img_1.png](./img/rollback.png)
+   localhost:8083/business/buy2![img_1.png](assets/rollback.png)
 
    
 
