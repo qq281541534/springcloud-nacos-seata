@@ -207,6 +207,10 @@ INSERT INTO `stock_tbl` VALUES ('1', 'C201901140001', '水杯', '1000');
 2. 分布式事务失败，模拟扣款成功、下单成功、扣库存失败，最终同时回滚
    localhost:8083/business/buy2![img_1.png](assets/rollback.png)
 
+
+## 4. 业务架构
+![img.png](assets/business_architecture.png)
+
    
 
 
