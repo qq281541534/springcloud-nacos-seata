@@ -98,7 +98,7 @@ mybatis-plus:
 logging:
   level:
     io:
-      seata: debug
+      seata: info
 ########## swagger 配置组件集成###
 #cloud:
 #  swagger:
