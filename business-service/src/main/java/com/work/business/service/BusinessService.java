@@ -66,7 +66,7 @@ public class BusinessService {
      * @param businessDTO
      * @return
      */
-    @GlobalTransactional(timeoutMills = 300000, name = "gts-business-seata")
+    @GlobalTransactional(timeoutMills = 300000, name = "gts-business-seata-rollback")
     public RespBody handleBusiness2(BusinessDTO businessDTO) {
         log.info("开始全局事务，XID = " + RootContext.getXID());
         //1、扣减库存
